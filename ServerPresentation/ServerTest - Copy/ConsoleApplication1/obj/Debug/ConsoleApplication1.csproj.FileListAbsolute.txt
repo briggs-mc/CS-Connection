@@ -1,0 +1,52 @@
+c:\users\johnson_e\documents\visual studio 2012\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+c:\users\johnson_e\documents\visual studio 2012\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+c:\users\johnson_e\documents\visual studio 2012\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+c:\users\johnson_e\documents\visual studio 2012\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\nunit.framework.dll
+c:\users\johnson_e\documents\visual studio 2012\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\nunit.framework.xml
+c:\users\johnson_e\documents\visual studio 2012\Projects\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+c:\users\johnson_e\documents\visual studio 2012\Projects\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+C:\Users\Johnson_E\Documents\Visual Studio 2012\Projects\ServerTest\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+C:\Users\Johnson_E\Documents\Visual Studio 2012\Projects\ServerTest\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+C:\Users\Johnson_E\Documents\Visual Studio 2012\Projects\ServerTest\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+C:\Users\Johnson_E\Documents\Visual Studio 2012\Projects\ServerTest\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\Users\Johnson_E\Documents\Visual Studio 2012\Projects\ServerTest\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+C:\Users\Johnson_E\Documents\Visual Studio 2012\Projects\ServerTest\ConsoleApplication1\bin\Debug\nunit.framework.dll
+C:\Users\Johnson_E\Documents\Visual Studio 2012\Projects\ServerTest\ConsoleApplication1\bin\Debug\nunit.framework.xml
+C:\Users\Johnson_E\Documents\Visual Studio 2012\Projects\ServerTest\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
+F:\ServerTest - Copy\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+F:\ServerTest - Copy\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+F:\ServerTest - Copy\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+F:\ServerTest - Copy\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+F:\ServerTest - Copy\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+F:\ServerTest - Copy\ConsoleApplication1\bin\Debug\nunit.framework.dll
+F:\ServerTest - Copy\ConsoleApplication1\bin\Debug\nunit.framework.xml
+F:\ServerTest - Copy\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
+C:\Users\piersa_A\Desktop\ServerTest - Copy\ServerTest - Copy\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+C:\Users\piersa_A\Desktop\ServerTest - Copy\ServerTest - Copy\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+C:\Users\piersa_A\Desktop\ServerTest - Copy\ServerTest - Copy\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+C:\Users\piersa_A\Desktop\ServerTest - Copy\ServerTest - Copy\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\Users\piersa_A\Desktop\ServerTest - Copy\ServerTest - Copy\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+C:\Users\piersa_A\Desktop\ServerTest - Copy\ServerTest - Copy\ConsoleApplication1\bin\Debug\nunit.framework.dll
+C:\Users\piersa_A\Desktop\ServerTest - Copy\ServerTest - Copy\ConsoleApplication1\bin\Debug\nunit.framework.xml
+C:\Users\piersa_A\Desktop\ServerTest - Copy\ServerTest - Copy\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
+C:\Users\Piersa_A\Desktop\ServerPresentation\ServerPresentation\ServerTest - Copy\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+C:\Users\Piersa_A\Desktop\ServerPresentation\ServerPresentation\ServerTest - Copy\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+C:\Users\Piersa_A\Desktop\ServerPresentation\ServerPresentation\ServerTest - Copy\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+C:\Users\Piersa_A\Desktop\ServerPresentation\ServerPresentation\ServerTest - Copy\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\Users\Piersa_A\Desktop\ServerPresentation\ServerPresentation\ServerTest - Copy\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+C:\Users\Piersa_A\Desktop\ServerPresentation\ServerPresentation\ServerTest - Copy\ConsoleApplication1\bin\Debug\nunit.framework.dll
+C:\Users\Piersa_A\Desktop\ServerPresentation\ServerPresentation\ServerTest - Copy\ConsoleApplication1\bin\Debug\nunit.framework.xml
+C:\Users\Piersa_A\Desktop\ServerPresentation\ServerPresentation\ServerTest - Copy\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
+F:\ServerPresentation\ServerPresentation\ServerTest - Copy\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+F:\ServerPresentation\ServerPresentation\ServerTest - Copy\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+F:\ServerPresentation\ServerPresentation\ServerTest - Copy\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+F:\ServerPresentation\ServerTest - Copy\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+F:\ServerPresentation\ServerTest - Copy\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+F:\ServerPresentation\ServerTest - Copy\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+F:\ServerPresentation\ServerTest - Copy\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+F:\ServerPresentation\ServerTest - Copy\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+F:\ServerPresentation\ServerTest - Copy\ConsoleApplication1\bin\Debug\nunit.framework.dll
+F:\ServerPresentation\ServerTest - Copy\ConsoleApplication1\bin\Debug\nunit.framework.xml
+F:\ServerPresentation\ServerTest - Copy\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
+F:\ServerPresentation\ServerTest - Copy\ConsoleApplication1\obj\Debug\ConsoleApplication1.Properties.Resources.resources
+F:\ServerPresentation\ServerTest - Copy\ConsoleApplication1\obj\Debug\ConsoleApplication1.csproj.GenerateResource.Cache

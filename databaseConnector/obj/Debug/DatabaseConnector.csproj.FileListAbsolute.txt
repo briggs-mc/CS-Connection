@@ -1,0 +1,9 @@
+C:\Users\briggs_mc\cs350\CS-connect\databaseConnector\bin\Debug\ConsoleApplication1.exe.config
+C:\Users\briggs_mc\cs350\CS-connect\databaseConnector\obj\Debug\DatabaseConnector.csprojResolveAssemblyReference.cache
+C:\Users\briggs_mc\cs350\CS-connect\databaseConnector\bin\Debug\ConsoleApplication1.exe
+C:\Users\briggs_mc\cs350\CS-connect\databaseConnector\bin\Debug\ConsoleApplication1.pdb
+C:\Users\briggs_mc\cs350\CS-connect\databaseConnector\bin\Debug\nunit.framework.dll
+C:\Users\briggs_mc\cs350\CS-connect\databaseConnector\bin\Debug\nunit.mocks.dll
+C:\Users\briggs_mc\cs350\CS-connect\databaseConnector\bin\Debug\nunit.framework.xml
+C:\Users\briggs_mc\cs350\CS-connect\databaseConnector\obj\Debug\ConsoleApplication1.exe
+C:\Users\briggs_mc\cs350\CS-connect\databaseConnector\obj\Debug\ConsoleApplication1.pdb
