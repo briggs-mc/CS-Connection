@@ -9,6 +9,7 @@ using System.Data.OleDb;
 using System.Net;
 using NUnit.Framework;
 
+
 namespace databaseTest
 {
     [TestFixture]
@@ -25,47 +26,30 @@ namespace databaseTest
          //   connection.ConnectionString =
 
          //  "Provider=Microsoft.ACE.OLEDB.12.0; Data Source=C:\\Users\\briggs_mc\\cs350\\CS-connect\\databaseConnector\\csconnect.accdb;";
-            //string server = "localhost";
-            //string database = "csconnect";
-            //string uid = "root";
-            //string password = "dftMySQLpattok?";
-            //string connectionString;
-            //connectionString = "SERVER=" + server + ";" + "DATABASE=" + 
-            //database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
-
-            // connection = new MySqlConnection(connectionString);
+            
         }
 
 
 
         [Test]
-        public static void connectToDatabase()
+        //test if we can connect to the database
+        public static void connectToDatabaseTest()
         {
             
-            OleDbConnection connection = new OleDbConnection();
-            connection.ConnectionString =
-
-           "Provider=Microsoft.ACE.OLEDB.12.0; Data Source=C:\\Users\\briggs_mc\\cs350\\CS-connect\\databaseConnector\\csconnect.accdb;";
-            connection.Open();
+            OleDbConnection connection = DatabaseConnector.CommonFunctions.connectToDB();
 
             Assert.AreEqual(connection.State,ConnectionState.Open);
 
             connection.Close();
 
-            
-            //return connection;
-
-
         }
 
         [Test]
-        public static void readFromDatabase()
+        public static void readFromDatabaseTest()
         {
-            OleDbConnection connection = new OleDbConnection();
-            connection.ConnectionString =
-
-           "Provider=Microsoft.ACE.OLEDB.12.0; Data Source=C:\\Users\\briggs_mc\\cs350\\CS-connect\\databaseConnector\\csconnect.accdb;";
-            connection.Open();
+             
+            //call database connection function
+            OleDbConnection connection = DatabaseConnector.CommonFunctions.connectToDB();
 
 
             // Create a command
@@ -74,52 +58,33 @@ namespace databaseTest
 
 
 
-            // Use the connection that was passed in
+            // Use the connection that we earlier created
 
             cmd.Connection = connection;
 
 
-
-            // The command will be a text command.
-
-            cmd.CommandType = CommandType.Text;
-
-            //get something
+            //make a string that is the command to try to select something 
+            //from the database
 
             string command = "Select StudentName FROM userInfo";
+            string commandPiece = "StudentName";
 
-            cmd.CommandText = command;
-     
+            //send this command Text and the connection to the function to read 
+            //from the database - also for now I need to send the field I am interested in
 
-            OleDbDataReader reader = cmd.ExecuteReader();
+            string studentNameTest =  DatabaseConnector.CommonFunctions.readFromDatabase(connection, command, commandPiece);
 
-
-            if (reader.HasRows)
-            {
-
-                while (reader.Read())
-                {
-
-                    string studentNameTest = (string)reader["StudentName"];
-                    Assert.Greater(studentNameTest.Length, 0);
-
-                }
-
-            }
-  
-            reader.Close();
+         
+            Assert.Greater(studentNameTest.Length, 0);
          
            
         }
 
         [Test]
-        public static void writeToDatabase()
+        public static void writeToDatabaseTest()
         {
-            OleDbConnection connection = new OleDbConnection();
-            connection.ConnectionString =
-
-           "Provider=Microsoft.ACE.OLEDB.12.0; Data Source=C:\\Users\\briggs_mc\\cs350\\CS-connect\\databaseConnector\\csconnect.accdb;";
-            connection.Open();
+            //call database connection function
+            OleDbConnection connection = DatabaseConnector.CommonFunctions.connectToDB();
 
             // Create a command
 
@@ -133,17 +98,13 @@ namespace databaseTest
 
             cmd.CommandType = CommandType.Text;
 
-            //write something
+            //the write command text
 
-            string command = "INSERT INTO userInfo (Username, Password, StudentID, StudentName, Class1, Class2, Class3, Class4, Class5, Class6) "
+            string command = "INSERT INTO userInfo (Username, Password1, StudentID, StudentName, Class1, Class2, Class3, Class4, Class5, Class6) "
                 + "VALUES( 'smith_j', 'ps12345', '54321', 'John Smith', 'CS142', 'CS385', 'CS131', 'CS123', 'CS234', 'CS567');";
 
-            //string command = "INSERT INTO userInfo VALUES( 'smith_j', 'ps12345', '54321', 'John Smith', 'CS142', 'CS385', 'CS131', 'CS123','CS345', 'CS234');";
-            
 
-            cmd.CommandText = command;
-
-            int nNoAdded = cmd.ExecuteNonQuery();
+            int nNoAdded = DatabaseConnector.CommonFunctions.writeToDatabase(connection, command);
 
             Assert.Greater(nNoAdded,0);
         }

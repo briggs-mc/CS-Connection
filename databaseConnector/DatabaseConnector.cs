@@ -11,38 +11,118 @@ using System.Net;
 
 
 //namespace databaseConnector
-public class databaseConnector
+public class DatabaseConnector
 {
-    
+
     public static void Main()
     {
 
     }
 
-        public class CommonFunctions
+    public class CommonFunctions
+    {
+        //Open a connection
+        public static OleDbConnection connectToDB()
         {
 
-            public static OleDbConnection connectToDB()
+            OleDbConnection connection = new OleDbConnection();
+
+
+
+            connection.ConnectionString =
+
+            "Provider=Microsoft.ACE.OLEDB.12.0; Data Source=C:\\Users\\briggs_mc\\cs350\\CS-connect\\databaseConnector\\csconnect.accdb;";
+            
+
+            connection.Open();
+
+            
+            return connection;
+
+        }
+
+        //read from an open database - using a supplied connection and 
+        //a provided string command and also for now need the piece of the command that is 
+        //the field I want to look at
+        //but must be able to read more than line and more than one field
+        //I am not sure how to do this at this time - need to return an array of stirngs?
+        //how do I make this generic?
+        public static string readFromDatabase(OleDbConnection connection,
+            string command, string commandPiece)
+        {
+
+
+            // Create a command
+
+            OleDbCommand cmd = new OleDbCommand();
+
+            // Use the connection that was passed in
+
+            cmd.Connection = connection;
+
+
+
+            // The command will be a text command.
+
+            cmd.CommandType = CommandType.Text;
+
+            cmd.CommandText = command;
+
+
+            OleDbDataReader reader = cmd.ExecuteReader();
+
+            string studentNameTest;
+
+            if (reader.HasRows)
             {
 
-                OleDbConnection connection = new OleDbConnection();
+                while (reader.Read())
+                {
 
+                    studentNameTest= (string)reader[commandPiece];
+                    //string studentNameTest = (string)reader[commandPiece];
+                    //Assert.Greater(studentNameTest.Length, 0);
 
-
-                connection.ConnectionString =
-
-               "Provider=Microsoft.ACE.OLEDB.12.0; Data Source=C:\\Users\\briggs_mc\\cs350\\CS-connect\\databaseConnector\\csconnect.accdb;";
-            
-
-                connection.Open();
-
-            
-                return connection;
+                }
+                
+                studentNameTest= null;
 
             }
+            else studentNameTest= null;
+            reader.Close();
+            return studentNameTest;
+
         }
+
+        public static int writeToDatabase(OleDbConnection connection, string command)
+        {
+
+            // Create a command
+
+            OleDbCommand cmd = new OleDbCommand();
+
+            // Use the connection that was passed in
+
+            cmd.Connection = connection;
+
+
+
+            // The command will be a text command.
+
+            cmd.CommandType = CommandType.Text;
+
+            cmd.CommandText = command;
+           
+
+            int nNoAdded = cmd.ExecuteNonQuery();
+
+            return nNoAdded;
+        }
+    }
     
 }
+
+
         //public static List<Username> getUsers(string presentationId, OleDbConnection connection)
         //{
 
