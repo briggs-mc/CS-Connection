@@ -76,6 +76,7 @@ public class DatabaseConnector
             if (reader.HasRows)
             {
 
+                studentNameTest = "Junk1";
                 while (reader.Read())
                 {
 
@@ -85,10 +86,10 @@ public class DatabaseConnector
 
                 }
                 
-                studentNameTest= null;
+                
 
             }
-            else studentNameTest= null;
+            else studentNameTest= "Junk2";
             reader.Close();
             return studentNameTest;
 

@@ -74,10 +74,11 @@ namespace databaseTest
 
             string studentNameTest =  DatabaseConnector.CommonFunctions.readFromDatabase(connection, command, commandPiece);
 
-         
+            Assert.AreNotSame(studentNameTest, "Junk1");
+            Assert.AreNotSame(studentNameTest, "Junk2");
             Assert.Greater(studentNameTest.Length, 0);
-         
-           
+
+                   
         }
 
         [Test]

@@ -1,0 +1,8 @@
+C:\Users\briggs_mc\cs350\CS-connect\ExcelReader\ExcelReader\bin\Debug\ExcelReader.exe.config
+C:\Users\briggs_mc\cs350\CS-connect\ExcelReader\ExcelReader\obj\Debug\ExcelReader.csprojResolveAssemblyReference.cache
+C:\Users\briggs_mc\cs350\CS-connect\ExcelReader\ExcelReader\bin\Debug\ExcelReader.exe
+C:\Users\briggs_mc\cs350\CS-connect\ExcelReader\ExcelReader\bin\Debug\ExcelReader.pdb
+C:\Users\briggs_mc\cs350\CS-connect\ExcelReader\ExcelReader\obj\Debug\ExcelReader.exe
+C:\Users\briggs_mc\cs350\CS-connect\ExcelReader\ExcelReader\obj\Debug\ExcelReader.pdb
+C:\Users\briggs_mc\cs350\CS-connect\ExcelReader\ExcelReader\bin\Debug\nunit.framework.dll
+C:\Users\briggs_mc\cs350\CS-connect\ExcelReader\ExcelReader\bin\Debug\nunit.framework.xml
