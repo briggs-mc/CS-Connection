@@ -1,4 +1,11 @@
-﻿#define DEBUG
+﻿//CS350 Spring 2014
+//CS Connect Group 3
+//This program is for opening an Excel Spreadsheet and reading data from it
+//It will be used to get student info from the roster spreadsheets and put into 
+//the access database 
+
+
+#define DEBUG
 
 using System;
 using System.Collections.Generic;

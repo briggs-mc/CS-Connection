@@ -1,4 +1,9 @@
-﻿using System;
+﻿//CS350 Spring 2014
+//CS Connect Group 3
+//This program is for opening, reading data, and writing to an Access Database
+
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
