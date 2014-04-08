@@ -69,13 +69,15 @@ namespace databaseTest
             //make a string that is the command to try to select something 
             //from the database
 
-            string command = "Select StudentName FROM userInfo";
-            string commandPiece = "StudentName";
+            //desired field Name
+            string dBField = "StudentName";
+            //desired table Name
+            string dBtable = "userInfo";
 
             //send this command Text and the connection to the function to read 
             //from the database - also for now I need to send the field I am interested in
 
-            string studentNameTest =  DatabaseConnector.CommonFunctions.readFromDatabase(connection, command, commandPiece);
+            string studentNameTest = DatabaseConnector.CommonFunctions.readFromDatabase(connection, dBtable, dBField);
 
             Assert.AreNotSame(studentNameTest, "Junk1");
             Assert.AreNotSame(studentNameTest, "Junk2");

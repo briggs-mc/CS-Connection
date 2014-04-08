@@ -51,7 +51,9 @@ namespace ExcelReader
 
 
             //Open the first worksheet and get the information
-            public static object[,] readWorksheet(Workbook workbook)
+            //For now I will try to have as parameters the fields I want to get out of the excel document
+            //public static object[,] 
+            public static void readWorksheet(Workbook workbook, out string[] Course, out string[] IndividualID, out string[] LastName, out string[] FirstName, out string[] Email)
             {
                 
             
@@ -69,50 +71,49 @@ namespace ExcelReader
                 string[] YT = new string[worksheet.UsedRange.Rows.Count];
                 string[] MatchCourse = new string[worksheet.UsedRange.Rows.Count];
                 string[] Department = new string[worksheet.UsedRange.Rows.Count];
-                string[] Course = new string[worksheet.UsedRange.Rows.Count];
+                Course = new string[worksheet.UsedRange.Rows.Count];
                 string[] Section = new string[worksheet.UsedRange.Rows.Count];
                 string[] FinalGrade = new string[worksheet.UsedRange.Rows.Count];
-                string[] IndividualID = new string[worksheet.UsedRange.Rows.Count];
+                IndividualID = new string[worksheet.UsedRange.Rows.Count];
                 string[] Classification = new string[worksheet.UsedRange.Rows.Count];
                 string[] EnrollmentStatus = new string[worksheet.UsedRange.Rows.Count];
-                string[] LastName = new string[worksheet.UsedRange.Rows.Count];
-                string[] FirstName = new string[worksheet.UsedRange.Rows.Count];
+                LastName = new string[worksheet.UsedRange.Rows.Count];
+                FirstName = new string[worksheet.UsedRange.Rows.Count];
                 string[] Nickname = new string[worksheet.UsedRange.Rows.Count];
                 string[] Phone = new string[worksheet.UsedRange.Rows.Count];
-                string[] Email = new string[worksheet.UsedRange.Rows.Count];
+                Email = new string[worksheet.UsedRange.Rows.Count];
                 string[] Notes = new string[worksheet.UsedRange.Rows.Count];
                 
                
                 //access the cells
-                for (int row = 1; row <= worksheet.UsedRange.Rows.Count; ++row)
+                for (int row =1; row < worksheet.UsedRange.Rows.Count; ++row)
                 {
-                    for (int col = 1; col <= worksheet.UsedRange.Columns.Count; ++col)
-                    {
-                        YT[row] = valueArray[row,col].ToString();
-                        MatchCourse[row] = valueArray[row,col].ToString();
-                        Department[row] = valueArray[row,col].ToString();
-                        Course[row] = valueArray[row,col].ToString();
-                        Section[row] = valueArray[row,col].ToString();
-                        FinalGrade[row] = valueArray[row,col].ToString();
-                        IndividualID[row] = valueArray[row,col].ToString();
-                        Classification[row] = valueArray[row,col].ToString();
-                        EnrollmentStatus[row] = valueArray[row,col].ToString();
-                        LastName[row] = valueArray[row,col].ToString();
-                        FirstName[row] = valueArray[row,col].ToString();
-                        Nickname[row] = valueArray[row,col].ToString();
-                        Phone[row] = valueArray[row,col].ToString();
-                        Email[row] = valueArray[row,col].ToString();
-                        Notes[row] = valueArray[row,col].ToString();
+                    
+                    
+                    int col = 1;
+                    YT[row] = valueArray[row,col].ToString();
+                    MatchCourse[row] = valueArray[row,++col].ToString();
+                    Department[row] = valueArray[row,++col].ToString();
+                    Course[row] = valueArray[row,++col].ToString();
+                    Section[row] = valueArray[row,++col].ToString();
+                    FinalGrade[row] = valueArray[row, ++col].ToString();
+                    IndividualID[row] = valueArray[row, ++col].ToString();
+                    Classification[row] = valueArray[row, ++col].ToString();
+                    EnrollmentStatus[row] = valueArray[row, ++col].ToString();
+                    LastName[row] = valueArray[row, ++col].ToString();
+                    FirstName[row] = valueArray[row, ++col].ToString();
+                    Nickname[row] = valueArray[row, ++col].ToString();
+                    Phone[row] = valueArray[row, ++col].ToString();
+                    Email[row] = valueArray[row, ++col].ToString();
+                    Notes[row] = valueArray[row, ++col].ToString();
 
-
-                    }
 
                 }
                 //clean up stuffs
                 workbook.Close(false, Type.Missing, Type.Missing);
                 Marshal.ReleaseComObject(workbook);
 
-                return valueArray;
+                //return valueArray;
 
 
 

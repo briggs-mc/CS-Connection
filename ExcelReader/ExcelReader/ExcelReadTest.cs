@@ -32,9 +32,17 @@ namespace ExcelReader
         {
 
             Workbook workbook = ExcelReader.Program.openWorkbook();
-            object[,] valueArray = ExcelReader.Program.readWorksheet(workbook);
+            string[] Course;
+            string[] StudentID; 
+            string[] LastName ;
+            string[] FirstName;
+            string[] Email;
+            //object[,] valueArray = 
+            ExcelReader.Program.readWorksheet(workbook, out Course, out StudentID, out LastName, out FirstName, out Email);
+
+            Assert.IsNotEmpty(Course[1]);
             //Assert.AreEqual(valueArray[3, 3].ToString(), "CS");
-            Assert.NotNull(valueArray[3, 3]);
+            //Assert.NotNull(valueArray[3, 3]);
 
 
         }

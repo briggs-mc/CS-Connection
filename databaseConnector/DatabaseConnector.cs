@@ -36,7 +36,7 @@ public class DatabaseConnector
 
             connection.ConnectionString =
 
-            "Provider=Microsoft.ACE.OLEDB.12.0; Data Source=C:\\Users\\briggs_mc\\cs350\\CS-connect\\databaseConnector\\csconnect.accdb;";
+            "Provider=Microsoft.ACE.OLEDB.12.0; Data Source=C:\\Users\\briggs_mc\\cs350\\cs-connect\\databaseConnector\\csconnect.accdb;";
             
 
             connection.Open();
@@ -53,7 +53,7 @@ public class DatabaseConnector
         //I am not sure how to do this at this time - need to return an array of stirngs?
         //how do I make this generic?
         public static string readFromDatabase(OleDbConnection connection,
-            string command, string commandPiece)
+            string table, string dBfield)
         {
 
 
@@ -71,8 +71,13 @@ public class DatabaseConnector
 
             cmd.CommandType = CommandType.Text;
 
-            cmd.CommandText = command;
+            //cmd.CommandText = command;
 
+            cmd.CommandText = "SELECT " + dBfield + " " + "FROM " + table;
+            //cmd.CommandText = "SELECT " + "StudentName " + "FROM " + "userInfo";
+            //cmd.CommandText = "SELECT StudentName FROM userInfo";
+            //cmd.CommandText = dBCommand + commandPiece + dBword + table;
+            System.Console.WriteLine(cmd.CommandText);
 
             OleDbDataReader reader = cmd.ExecuteReader();
 
@@ -85,7 +90,7 @@ public class DatabaseConnector
                 while (reader.Read())
                 {
 
-                    studentNameTest= (string)reader[commandPiece];
+                    studentNameTest = (string)reader[dBfield];
                     //string studentNameTest = (string)reader[commandPiece];
                     //Assert.Greater(studentNameTest.Length, 0);
 
