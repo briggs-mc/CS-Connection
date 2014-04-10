@@ -19,10 +19,10 @@ using System.Net;
 public class DatabaseConnector
 {
 
-    public static void Main()
-    {
+    //public static void Main()
+    //{
 
-    }
+    //}
 
     public class CommonFunctions
     {
