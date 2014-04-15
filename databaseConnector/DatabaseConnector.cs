@@ -19,11 +19,6 @@ using System.Net;
 public class DatabaseConnector
 {
 
-    //public static void Main()
-    //{
-
-    //}
-
     public class CommonFunctions
     {
         //Open a connection
@@ -124,7 +119,7 @@ public class DatabaseConnector
 
             cmd.CommandText = command;
            
-
+            
             int nNoAdded = cmd.ExecuteNonQuery();
 
             return nNoAdded;
@@ -134,72 +129,3 @@ public class DatabaseConnector
 }
 
 
-        //public static List<Username> getUsers(string presentationId, OleDbConnection connection)
-        //{
-
-        //    List<Username> authors = new List<Username>();
-
-
-
-        //    // Create a command
-
-        //    OleDbCommand cmd = new OleDbCommand();
-
-
-
-        //    // Use the connection that was passed in
-
-        //    cmd.Connection = connection;
-
-
-
-        //    // The command will be a text command.
-
-        //    cmd.CommandType = CommandType.Text;
-
-
-
-        //    // get the department Name
-
-        //    string command = "Select * from userInfo, Student where presentationStudent.presentationId = $pid " +
-
-        //        "and Student.studentId=presentationStudent.studentId order by authorOrder";
-
-
-
-        //    command = command.Replace("$pid", presentationId);
-
-        //    cmd.CommandText = command;
-
-        //    OleDbDataReader reader = cmd.ExecuteReader();
-
-        //    if (reader.HasRows)
-        //    {
-
-        //        while (reader.Read())
-        //        {
-
-        //            Author nextAuthor = new Author();
-
-        //            nextAuthor.First = (string)reader["firstName"];
-
-        //            nextAuthor.Middle = (string)reader["MiddleName"];
-
-        //            nextAuthor.Last = (string)reader["lastName"];
-
-        //            nextAuthor.Email = (string)reader["emailAddress"];
-
-        //            authors.Add(nextAuthor);
-
-        //        }
-
-        //    }
-
-        //    reader.Close();
-
-
-
-        //    return authors;
-
-        //}
-  

@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="DatabaseConnector.cs" />
     <Compile Include="DatabaseTest.cs" />
+    <Compile Include="ExcelReader.cs" />
     <Compile Include="ExcelReadTest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

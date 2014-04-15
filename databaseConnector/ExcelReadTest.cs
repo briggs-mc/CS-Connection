@@ -30,15 +30,15 @@ namespace ExcelReader
         //read from worksheet
         public static void readWorksheetTest()
         {
-
-            Workbook workbook = ExcelReader.Program.openWorkbook();
+            string excelFileName = "C:\\Users\\briggs_mc\\cs350\\CS-connect\\ExcelReader\\CS141roosterTest.xlsx";
+            Workbook workbook = ExcelReader.openWorkbook(excelFileName);
             string[] Course;
             string[] StudentID; 
             string[] LastName ;
             string[] FirstName;
             string[] Email;
             //object[,] valueArray = 
-            ExcelReader.Program.readWorksheet(workbook, out Course, out StudentID, out LastName, out FirstName, out Email);
+            ExcelReader.readWorksheet(workbook, out Course, out StudentID, out LastName, out FirstName, out Email);
 
             Assert.IsNotEmpty(Course[1]);
             //Assert.AreEqual(valueArray[3, 3].ToString(), "CS");
