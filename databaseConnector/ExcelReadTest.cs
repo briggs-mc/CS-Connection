@@ -30,7 +30,7 @@ namespace ExcelReader
         //read from worksheet
         public static void readWorksheetTest()
         {
-            string excelFileName = "C:\\Users\\briggs_mc\\cs350\\CS-connect\\ExcelReader\\CS141roosterTest.xlsx";
+            string excelFileName = "C:\\Users\\briggs_mc\\cs350\\CS-connect\\DatabaseConnector\\CS141roosterTest.xlsx";
             Workbook workbook = ExcelReader.openWorkbook(excelFileName);
             string[] Course;
             string[] StudentID; 
@@ -40,7 +40,7 @@ namespace ExcelReader
             //object[,] valueArray = 
             ExcelReader.readWorksheet(workbook, out Course, out StudentID, out LastName, out FirstName, out Email);
 
-            Assert.IsNotEmpty(Course[1]);
+            Assert.IsNotEmpty(Course[2]);
             //Assert.AreEqual(valueArray[3, 3].ToString(), "CS");
             //Assert.NotNull(valueArray[3, 3]);
 

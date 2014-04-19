@@ -15,7 +15,7 @@ namespace ExcelReader
 {
     class ExcelReader
     {
-        public Microsoft.Office.Interop.Excel.Application _excelApp;
+        
         //Open an Excel  workbook
         public static Workbook openWorkbook(string fileName)
         {

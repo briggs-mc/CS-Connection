@@ -48,6 +48,7 @@ namespace databaseTest
         }
 
         [Test]
+        //this tests the funtion for reading from a database give a field and a table
         public static void readFromDatabaseTest()
         {
              
@@ -70,7 +71,7 @@ namespace databaseTest
             //from the database
 
             //desired field Name
-            string dBField = "StudentName";
+            string dBField = "FirstName";
             //desired table Name
             string dBtable = "userInfo";
 
@@ -84,6 +85,41 @@ namespace databaseTest
             Assert.Greater(studentNameTest.Length, 0);
 
                    
+        }
+
+        [Test]
+        //this tests reads from a database given a command string - basically the entire select query
+        public static void readDataTest()
+        {
+
+            //call database connection function
+            OleDbConnection connection = DatabaseConnector.CommonFunctions.connectToDB();
+
+
+            // Create a command
+
+            OleDbCommand cmd = new OleDbCommand();
+
+
+
+            // Use the connection that we earlier created
+
+            cmd.Connection = connection;
+
+
+            //make a string that is the command to try to select something 
+            //from the database
+
+            //desired query
+            string commandCourse = "SELECT Course from allCourses where Course = '141';";
+
+            //return from query
+            List<string> coursesAlreadyInTable = DatabaseConnector.CommonFunctions.readData(connection, commandCourse);
+
+            Assert.IsNotNull(coursesAlreadyInTable);
+
+
+
         }
 
         [Test]
@@ -106,8 +142,8 @@ namespace databaseTest
 
             //the write command text
 
-            string command = "INSERT INTO userInfo (Username, Password1, StudentID, StudentName, Class1, Class2, Class3, Class4, Class5, Class6) "
-                + "VALUES( 'smith_j', 'ps12345', '54321', 'John Smith', 'CS142', 'CS385', 'CS131', 'CS123', 'CS234', 'CS567');";
+            string command = "INSERT INTO userInfo (Username, Password1, LastName, FirstName) "
+                + "VALUES( 'smith_j', 'ps12345', 'John', 'Smith');";
 
 
             int nNoAdded = DatabaseConnector.CommonFunctions.writeToDatabase(connection, command);

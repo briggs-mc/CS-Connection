@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections.Generic;
+//using System.Collections.Generic.List;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -68,6 +69,7 @@ public class DatabaseConnector
 
             //cmd.CommandText = command;
 
+            //piece together command
             cmd.CommandText = "SELECT " + dBfield + " " + "FROM " + table;
             //cmd.CommandText = "SELECT " + "StudentName " + "FROM " + "userInfo";
             //cmd.CommandText = "SELECT StudentName FROM userInfo";
@@ -81,7 +83,7 @@ public class DatabaseConnector
             if (reader.HasRows)
             {
 
-                studentNameTest = "Junk1";
+                studentNameTest = "Junk1";  //this is for test
                 while (reader.Read())
                 {
 
@@ -94,12 +96,13 @@ public class DatabaseConnector
                 
 
             }
-            else studentNameTest= "Junk2";
+            else studentNameTest = "Junk2"; //this is for test
             reader.Close();
             return studentNameTest;
 
         }
 
+        //Write to the database 
         public static int writeToDatabase(OleDbConnection connection, string command)
         {
 
@@ -119,11 +122,61 @@ public class DatabaseConnector
 
             cmd.CommandText = command;
            
-            
+            //execute the command
             int nNoAdded = cmd.ExecuteNonQuery();
 
             return nNoAdded;
         }
+
+
+        //generic read data - given an query - read the database
+        //returns a list of data
+        public static List<string> readData(OleDbConnection connection, string queryString)
+        {
+            
+
+            //OleDbCommand command = new OleDbCommand(queryString, connection);
+
+            // Create a command
+
+            OleDbCommand cmd = new OleDbCommand();
+
+            // Use the connection that was passed in
+
+            cmd.Connection = connection;
+
+
+            // The command will be a text command.
+
+            cmd.CommandType = CommandType.Text;
+
+
+            //piece together command
+            cmd.CommandText = queryString;
+
+            OleDbDataReader reader = cmd.ExecuteReader();
+            int X = reader.RecordsAffected;
+            
+            List <string> queryReturn  = new List<string>();
+
+            if (reader.HasRows)
+            {
+
+                int i = 0;
+                while (reader.Read())
+                {
+                   
+                    queryReturn.Insert(i,reader.ToString());
+                    ++i;
+                }
+
+            }
+
+            reader.Close();
+            return queryReturn;
+        }
+
+
     }
     
 }

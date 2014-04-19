@@ -29,14 +29,16 @@ namespace MainProgram
         static void Main()
         {
             //Read required data from Excel Worksheet
-            string excelFileName = "C:\\Users\\briggs_mc\\cs350\\CS-connect\\ExcelReader\\CS141roosterTest.xlsx";
+            string excelFileName = "C:\\Users\\briggs_mc\\cs350\\CS-connect\\DatabaseConnector\\CS142roosterTest.xlsx";
             Workbook workbook = ExcelReader.ExcelReader.openWorkbook(excelFileName);
+            //make arrays for the required fields - we do not want to put in the database private info
             string[] course;
             string[] studentID;
             string[] lastName;
             string[] firstName;
             string[] email;
-            //object[,] valueArray = 
+            
+            //now read for the Excel worksheet and get out the info that we need
             ExcelReader.ExcelReader.readWorksheet(workbook, out course, out studentID, 
                 out lastName, out firstName, out email);
             
@@ -56,117 +58,61 @@ namespace MainProgram
 
             cmd.CommandType = CommandType.Text;
 
+            //Write to the database tables
+            //we have three tables - 
+            //  userInfo - stores basic data on the user
+            //  allCourse - stores all possible courses with a primary key
+            //  coursesTaken - list students and the course they are taking - each student may have multiple records
+
+            //first need to take the course and write it into the courses table if it is not already there
+            //check if it is there
+            //for each read for the excel file all the records will have the same course number, so just pick the first one - [2]
+            string commandCourse = "SELECT Course from allCourses where Course = '" + course[2] + "';";
+            
+            //returns list of courses that matches - should be either course name or nothing?
+            List<string> coursesAlreadyInTable = DatabaseConnector.CommonFunctions.readData(connection, commandCourse);
+           
+            //if the query returns no records (meaning the course we are looking for is not in the table) add it
+            if (!coursesAlreadyInTable.Any())
+            {
+                string commandCourseInsert = "INSERT INTO allCourses (Course) VALUES ('" + course[2] + "');";
+                int nNoAddedCourse = DatabaseConnector.CommonFunctions.writeToDatabase(connection, commandCourseInsert);
+            }
+
+            //now we need to add the students to the userInfo table if they are not already there and 
+            //to the classesTaking table
+
+
             //the write command text
             //write the command text for multiple rows using only needed fields
             //start with array index 2 - array index 0 is not writen from excel and 1 is used for the headers
             // - this command is for inserting the required fields into the database
-            //with the course in Class 1 field
-            //it does not check if the student already exists in the database
-            //If the student already exists the course number should be placed in the first available Class field
+
 
             for (int i = 2; i < studentID.Length; ++i)
             {
-                string command = "INSERT INTO userInfo (Username, Password1, StudentID, StudentName, Class1) VALUES ('" + email[i] + "', '" + studentID[i] + "', '" + lastName[i] + "', '" + firstName[i] + "', '" + course[i] + "');";
-                //string command = "INSERT INTO userInfo (Username, Password1, StudentID, StudentName, Class1) VALUES (" + "jfkldsf"+ ", " + StudentID[2] +", "+ LastName[2]+ ", "+FirstName[2]+ ", "+Course[2]+");";
+                //should return one name data or empty list
+                //may should change it to just get all the studentIDs first and then search the list
+                string lookupStudentIdCommand = "SELECT Username from userInfo where Username = '" + email[i] + "';"; 
+                //returns list with studentID or nothing?
+                List<string> studentsAlreadyInTable = DatabaseConnector.CommonFunctions.readData(connection, lookupStudentIdCommand);
 
-                int nNoAdded = DatabaseConnector.CommonFunctions.writeToDatabase(connection, command);
+                int nNoAddedCourse = DatabaseConnector.CommonFunctions.writeToDatabase(connection, lookupStudentIdCommand);
+                // if empty add record
+                if (!coursesAlreadyInTable.Any())
+                {
+                    string StudentToUserInfoCommand = "INSERT INTO userInfo (Username, Password1, LastName, FirstName) VALUES ('" + email[i] + "', '" + studentID[i] + "', '" + lastName[i] + "', '" + firstName[i] + "');";
+
+                    int nNoStudentsAdded = DatabaseConnector.CommonFunctions.writeToDatabase(connection, StudentToUserInfoCommand);
+                }
+                //either way add to classesTaking table
+                string StudentClassesTakingCommand = "INSERT INTO classesTaking (Username, Course) VALUES ('" + email[i] + "', '" + course[i] + "');";
+
+                int nNoAddedClass = DatabaseConnector.CommonFunctions.writeToDatabase(connection, StudentClassesTakingCommand);
+
             }
 
         }
-
-        ////Open an Excel  workbook
-        //public static Workbook openWorkbook()
-        //{
-
-        //    //create the Application object we can use in the member functions.
-        //    Microsoft.Office.Interop.Excel.Application _excelApp = new Microsoft.Office.Interop.Excel.Application();
-        //    _excelApp.Visible = true;
-
-        //    string fileName = "C:\\Users\\briggs_mc\\cs350\\CS-connect\\ExcelReader\\CS141roosterTest.xlsx";
-
-        //    //open the workbook
-        //    Workbook workbook = _excelApp.Workbooks.Open(fileName,
-        //        Type.Missing, Type.Missing, Type.Missing, Type.Missing,
-        //        Type.Missing, Type.Missing, Type.Missing, Type.Missing,
-        //        Type.Missing, Type.Missing, Type.Missing, Type.Missing,
-        //        Type.Missing, Type.Missing);
-
-        //    return workbook;
-
-        //}
-
-
-        ////Open the first worksheet and get the information
-        ////For now I will try to have as parameters the fields I want to get out of the excel document
-        ////public static object[,] 
-        //public static void readWorksheet(Workbook workbook, out string[] Course, out string[] IndividualID, out string[] LastName, out string[] FirstName, out string[] Email)
-        //{
-                
-            
-        //    //select the first sheet        
-        //    Worksheet worksheet = (Worksheet)workbook.Worksheets[1];
-
-        //    //find the used range in worksheet
-        //    Range excelRange = worksheet.UsedRange;
-
-        //    //get an object array of all of the cells in the worksheet (their values)
-        //    object[,] valueArray = (object[,])excelRange.get_Value(
-        //                XlRangeValueDataType.xlRangeValueDefault);
-
-        //    //make an array of all the data in each of the columns
-        //    string[] YT = new string[worksheet.UsedRange.Rows.Count];
-        //    string[] MatchCourse = new string[worksheet.UsedRange.Rows.Count];
-        //    string[] Department = new string[worksheet.UsedRange.Rows.Count];
-        //    Course = new string[worksheet.UsedRange.Rows.Count];
-        //    string[] Section = new string[worksheet.UsedRange.Rows.Count];
-        //    string[] FinalGrade = new string[worksheet.UsedRange.Rows.Count];
-        //    IndividualID = new string[worksheet.UsedRange.Rows.Count];
-        //    string[] Classification = new string[worksheet.UsedRange.Rows.Count];
-        //    string[] EnrollmentStatus = new string[worksheet.UsedRange.Rows.Count];
-        //    LastName = new string[worksheet.UsedRange.Rows.Count];
-        //    FirstName = new string[worksheet.UsedRange.Rows.Count];
-        //    string[] Nickname = new string[worksheet.UsedRange.Rows.Count];
-        //    string[] Phone = new string[worksheet.UsedRange.Rows.Count];
-        //    Email = new string[worksheet.UsedRange.Rows.Count];
-        //    string[] Notes = new string[worksheet.UsedRange.Rows.Count];
-                
-               
-        //    //access the cells 
-        //    //go through the rows and put the values from each column into the correct array
-        //    for (int row =1; row < worksheet.UsedRange.Rows.Count; ++row)
-        //    {
-                    
-                    
-        //        int col = 1;
-        //        YT[row] = valueArray[row,col].ToString();
-        //        MatchCourse[row] = valueArray[row,++col].ToString();
-        //        Department[row] = valueArray[row,++col].ToString();
-        //        Course[row] = valueArray[row,++col].ToString();
-        //        Section[row] = valueArray[row,++col].ToString();
-        //        FinalGrade[row] = valueArray[row, ++col].ToString();
-        //        IndividualID[row] = valueArray[row, ++col].ToString();
-        //        Classification[row] = valueArray[row, ++col].ToString();
-        //        EnrollmentStatus[row] = valueArray[row, ++col].ToString();
-        //        LastName[row] = valueArray[row, ++col].ToString();
-        //        FirstName[row] = valueArray[row, ++col].ToString();
-        //        Nickname[row] = valueArray[row, ++col].ToString();
-        //        Phone[row] = valueArray[row, ++col].ToString();
-        //        Email[row] = valueArray[row, ++col].ToString();
-        //        Notes[row] = valueArray[row, ++col].ToString();
-
-
-        //    }
-            ////clean up stuffs
-            //workbook.Close(false, Type.Missing, Type.Missing);
-            //Marshal.ReleaseComObject(workbook);
-
-            //return valueArray;
-
-
-
-            //_excelApp.Quit();
-            //Marshal.FinalReleaseComObject(_excelApp);
-        //}
         
     }
 }
