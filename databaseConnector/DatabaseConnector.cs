@@ -43,37 +43,17 @@ public class DatabaseConnector
         }
 
         //read from an open database - using a supplied connection and 
-        //a provided string command and also for now need the piece of the command that is 
-        //the field I want to look at
-        //but must be able to read more than line and more than one field
-        //I am not sure how to do this at this time - need to return an array of stirngs?
-        //how do I make this generic?
+        //table name and field - good to get one piece of data from a table
         public static string readFromDatabase(OleDbConnection connection,
             string table, string dBfield)
         {
 
 
-            // Create a command
+            OleDbCommand cmd = buildDatabaseConnectionCommand(connection);
 
-            OleDbCommand cmd = new OleDbCommand();
-
-            // Use the connection that was passed in
-
-            cmd.Connection = connection;
-
-
-
-            // The command will be a text command.
-
-            cmd.CommandType = CommandType.Text;
-
-            //cmd.CommandText = command;
-
-            //piece together command
+            //piece together command text
             cmd.CommandText = "SELECT " + dBfield + " " + "FROM " + table;
-            //cmd.CommandText = "SELECT " + "StudentName " + "FROM " + "userInfo";
-            //cmd.CommandText = "SELECT StudentName FROM userInfo";
-            //cmd.CommandText = dBCommand + commandPiece + dBword + table;
+
             System.Console.WriteLine(cmd.CommandText);
 
             OleDbDataReader reader = cmd.ExecuteReader();
@@ -88,8 +68,7 @@ public class DatabaseConnector
                 {
 
                     studentNameTest = (string)reader[dBfield];
-                    //string studentNameTest = (string)reader[commandPiece];
-                    //Assert.Greater(studentNameTest.Length, 0);
+
 
                 }
                 
@@ -102,10 +81,8 @@ public class DatabaseConnector
 
         }
 
-        //Write to the database 
-        public static int writeToDatabase(OleDbConnection connection, string command)
+        public static OleDbCommand buildDatabaseConnectionCommand(OleDbConnection connection)
         {
-
             // Create a command
 
             OleDbCommand cmd = new OleDbCommand();
@@ -119,7 +96,17 @@ public class DatabaseConnector
             // The command will be a text command.
 
             cmd.CommandType = CommandType.Text;
+            return cmd;
+        }
 
+        //Write to the database 
+        public static int writeToDatabase(OleDbConnection connection, string command)
+        {
+
+            //Create the command for the database connection
+            OleDbCommand cmd = buildDatabaseConnectionCommand(connection);
+
+            //use the command that was sent in
             cmd.CommandText = command;
            
             //execute the command
@@ -133,23 +120,10 @@ public class DatabaseConnector
         //returns a list of data
         public static List<string> readData(OleDbConnection connection, string queryString)
         {
-            
+ 
 
-            //OleDbCommand command = new OleDbCommand(queryString, connection);
-
-            // Create a command
-
-            OleDbCommand cmd = new OleDbCommand();
-
-            // Use the connection that was passed in
-
-            cmd.Connection = connection;
-
-
-            // The command will be a text command.
-
-            cmd.CommandType = CommandType.Text;
-
+            //Create the command for the database connection
+            OleDbCommand cmd = buildDatabaseConnectionCommand(connection);
 
             //piece together command
             cmd.CommandText = queryString;

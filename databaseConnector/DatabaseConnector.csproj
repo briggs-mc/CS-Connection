@@ -67,11 +67,18 @@
     <Compile Include="DatabaseTest.cs" />
     <Compile Include="ExcelReader.cs" />
     <Compile Include="ExcelReadTest.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="FillDatabase.cs" />
+    <Compile Include="professorLoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="professorLoginForm.Designer.cs">
+      <DependentUpon>professorLoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="professorModifyData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="professorModifyData.Designer.cs">
+      <DependentUpon>professorModifyData.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -97,8 +104,11 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="professorLoginForm.resx">
+      <DependentUpon>professorLoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="professorModifyData.resx">
+      <DependentUpon>professorModifyData.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -22,7 +22,8 @@ namespace ExcelReader
 
             //create the Application object we can use in the member functions.
             Microsoft.Office.Interop.Excel.Application _excelApp = new Microsoft.Office.Interop.Excel.Application();
-            _excelApp.Visible = true;
+            //if false does not open a window for Excel
+            _excelApp.Visible = false;
 
             
 
