@@ -1,0 +1,15 @@
+C:\Users\Piersa_A\Desktop\ServerUI\ServerUI\bin\Debug\ServerUI.exe.config
+C:\Users\Piersa_A\Desktop\ServerUI\ServerUI\obj\Debug\ServerUI.Properties.Resources.resources
+C:\Users\Piersa_A\Desktop\ServerUI\ServerUI\obj\Debug\ServerUI.csproj.GenerateResource.Cache
+C:\Users\Piersa_A\Desktop\ServerUI\ServerUI\bin\Debug\ServerUI.exe
+C:\Users\Piersa_A\Desktop\ServerUI\ServerUI\bin\Debug\ServerUI.pdb
+C:\Users\Piersa_A\Desktop\ServerUI\ServerUI\obj\Debug\ServerUI.exe
+C:\Users\Piersa_A\Desktop\ServerUI\ServerUI\obj\Debug\ServerUI.pdb
+C:\Users\Piersa_A\Desktop\ServerUI\ServerUI\obj\Debug\ServerUI.serverForm.resources
+C:\Users\Piersa_A\Desktop\ServerUI\ServerUI\obj\Debug\ServerUI.csprojResolveAssemblyReference.cache
+F:\ServerUI\ServerUI\bin\Debug\ServerUI.exe.config
+F:\ServerUI\ServerUI\obj\Debug\ServerUI.exe
+F:\ServerUI\ServerUI\obj\Debug\ServerUI.pdb
+F:\Final\ServerUI\ServerUI\bin\Debug\ServerUI.exe.config
+F:\Final\ServerUI\ServerUI\obj\Debug\ServerUI.exe
+F:\Final\ServerUI\ServerUI\obj\Debug\ServerUI.pdb
