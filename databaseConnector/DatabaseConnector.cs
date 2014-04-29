@@ -150,6 +150,23 @@ public class DatabaseConnector
             return queryReturn;
         }
 
+        //Run a Select Count query to check for info in database
+        public static int noRowsContainingInfo(OleDbConnection connection, string queryString)
+        {
+
+            //string ddlist = "select count(*) from jud_order where complex_name=@a and case_no=@b and sign=@c and jud_order_date=@d and user_code=@e";
+            OleDbCommand cmd = new OleDbCommand(queryString, connection);
+
+
+            int count = (int)cmd.ExecuteScalar();
+
+            //which you can then assign to count after type casting the result.
+
+            return count;
+        }
+
+        
+      
 
     }
     

@@ -1,6 +1,6 @@
-﻿namespace ConsoleApplication1
+﻿namespace ProfessorLoginForm
 {
-    partial class InsturctorSetup
+    partial class ProfessorLogin
     {
         /// <summary>
         /// Required designer variable.
@@ -28,28 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.profUsernametextBox = new System.Windows.Forms.TextBox();
+            this.profPasswordtextBox = new System.Windows.Forms.TextBox();
             this.profUsernameLabel = new System.Windows.Forms.Label();
             this.profPasswordLabel = new System.Windows.Forms.Label();
             this.profLoginButton = new System.Windows.Forms.Button();
             this.profEmailLabel = new System.Windows.Forms.Label();
             this.professorIntroLabel = new System.Windows.Forms.Label();
+            this.profErrorMessage = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // textBox1
+            // profUsernametextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(94, 60);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 0;
+            this.profUsernametextBox.Location = new System.Drawing.Point(94, 60);
+            this.profUsernametextBox.Name = "profUsernametextBox";
+            this.profUsernametextBox.Size = new System.Drawing.Size(100, 20);
+            this.profUsernametextBox.TabIndex = 0;
+            this.profUsernametextBox.TextChanged += new System.EventHandler(this.profUsernametextBox_TextChanged);
             // 
-            // textBox2
+            // profPasswordtextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(94, 133);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 1;
+            this.profPasswordtextBox.Location = new System.Drawing.Point(94, 133);
+            this.profPasswordtextBox.Name = "profPasswordtextBox";
+            this.profPasswordtextBox.Size = new System.Drawing.Size(100, 20);
+            this.profPasswordtextBox.TabIndex = 1;
+            this.profPasswordtextBox.TextChanged += new System.EventHandler(this.profPasswordtextBox_TextChanged);
             // 
             // profUsernameLabel
             // 
@@ -97,20 +100,32 @@
             this.professorIntroLabel.TabIndex = 6;
             this.professorIntroLabel.Text = "Professor login page";
             // 
-            // InsturctorSetup
+            // profErrorMessage
+            // 
+            this.profErrorMessage.AutoSize = true;
+            this.profErrorMessage.ForeColor = System.Drawing.Color.DarkRed;
+            this.profErrorMessage.Location = new System.Drawing.Point(33, 171);
+            this.profErrorMessage.Name = "profErrorMessage";
+            this.profErrorMessage.Size = new System.Drawing.Size(182, 13);
+            this.profErrorMessage.TabIndex = 7;
+            this.profErrorMessage.Text = "Username and/or password incorrect";
+            // 
+            // ProfessorLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Controls.Add(this.profErrorMessage);
             this.Controls.Add(this.professorIntroLabel);
             this.Controls.Add(this.profEmailLabel);
             this.Controls.Add(this.profLoginButton);
             this.Controls.Add(this.profPasswordLabel);
             this.Controls.Add(this.profUsernameLabel);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Name = "InsturctorSetup";
-            this.Text = "Instructor Setup";
+            this.Controls.Add(this.profPasswordtextBox);
+            this.Controls.Add(this.profUsernametextBox);
+            this.Name = "ProfessorLogin";
+            this.Text = "Professor Login";
+            this.Load += new System.EventHandler(this.ProfessorLogin_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -118,12 +133,13 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox profUsernametextBox;
+        private System.Windows.Forms.TextBox profPasswordtextBox;
         private System.Windows.Forms.Label profUsernameLabel;
         private System.Windows.Forms.Label profPasswordLabel;
         private System.Windows.Forms.Button profLoginButton;
         private System.Windows.Forms.Label profEmailLabel;
         private System.Windows.Forms.Label professorIntroLabel;
+        private System.Windows.Forms.Label profErrorMessage;
     }
 }

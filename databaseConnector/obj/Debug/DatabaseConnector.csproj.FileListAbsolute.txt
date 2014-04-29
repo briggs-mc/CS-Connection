@@ -7,5 +7,6 @@ C:\Users\briggs_mc\cs350\CS-connect\databaseConnector\obj\Debug\ConsoleApplicati
 C:\Users\briggs_mc\cs350\CS-connect\databaseConnector\obj\Debug\ConsoleApplication1.pdb
 C:\Users\briggs_mc\CS350\cs-connect\databaseConnector\bin\Debug\nunit.framework.dll
 C:\Users\briggs_mc\CS350\cs-connect\databaseConnector\bin\Debug\nunit.mocks.dll
-C:\Users\briggs_mc\cs350\CS-connect\databaseConnector\obj\Debug\ConsoleApplication1.InsturctorSetup.resources
 C:\Users\briggs_mc\cs350\CS-connect\databaseConnector\obj\Debug\DatabaseConnector.csproj.GenerateResource.Cache
+C:\Users\briggs_mc\cs350\CS-connect\databaseConnector\obj\Debug\ConsoleApplication1.professorModifyData.resources
+C:\Users\briggs_mc\cs350\CS-connect\databaseConnector\obj\Debug\ConsoleApplication1.ProfessorLogin.resources

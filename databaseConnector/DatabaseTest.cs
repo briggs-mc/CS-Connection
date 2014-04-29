@@ -18,18 +18,18 @@ namespace databaseTest
     [TestFixture]
     public class DatabaseTestClass
     {
-      
+
         // OleDbConnection connection;
 
         [SetUp]
         public void Setup()
         {
 
-         //   connection = new OleDbConnection();
-         //   connection.ConnectionString =
+            //   connection = new OleDbConnection();
+            //   connection.ConnectionString =
 
-         //  "Provider=Microsoft.ACE.OLEDB.12.0; Data Source=C:\\Users\\briggs_mc\\cs350\\CS-connect\\databaseConnector\\csconnect.accdb;";
-            
+            //  "Provider=Microsoft.ACE.OLEDB.12.0; Data Source=C:\\Users\\briggs_mc\\cs350\\CS-connect\\databaseConnector\\csconnect.accdb;";
+
         }
 
 
@@ -38,10 +38,10 @@ namespace databaseTest
         //test if we can connect to the database
         public static void connectToDatabaseTest()
         {
-            
+
             OleDbConnection connection = DatabaseConnector.CommonFunctions.connectToDB();
 
-            Assert.AreEqual(connection.State,ConnectionState.Open);
+            Assert.AreEqual(connection.State, ConnectionState.Open);
 
             connection.Close();
 
@@ -51,7 +51,7 @@ namespace databaseTest
         //this tests the funtion for reading from a database give a field and a table
         public static void readFromDatabaseTest()
         {
-             
+
             //call database connection function
             OleDbConnection connection = DatabaseConnector.CommonFunctions.connectToDB();
 
@@ -84,7 +84,7 @@ namespace databaseTest
             Assert.AreNotSame(studentNameTest, "Junk2");
             Assert.Greater(studentNameTest.Length, 0);
 
-                   
+
         }
 
         [Test]
@@ -148,8 +148,207 @@ namespace databaseTest
 
             int nNoAdded = DatabaseConnector.CommonFunctions.writeToDatabase(connection, command);
 
-            Assert.Greater(nNoAdded,0);
+            Assert.Greater(nNoAdded, 0);
         }
-            
+        [Test]
+        public static void getRosterTest()
+        {
+
+            string excelFileName = "C:\\Users\\briggs_mc\\cs350\\CS-connect\\DatabaseConnector\\CS142roosterTest.xlsx";
+            FillDatabase myFillDatabase = new FillDatabase();
+            myFillDatabase.getRoster(excelFileName);
+            Assert.IsNotEmpty(myFillDatabase.course[2]);
+        }
+
+        //test writing to the database tables using the function with SELECT queries that limits
+        //writing
+        [Test]
+        public static void rosterToDatabaseTablesTest()
+        {
+            string excelFileName = "C:\\Users\\briggs_mc\\cs350\\CS-connect\\DatabaseConnector\\CS142roosterTest.xlsx";
+            FillDatabase myFillDatabase = new FillDatabase();
+            myFillDatabase.getRoster(excelFileName);
+            myFillDatabase.rosterToDatabaseTables();
+
+            OleDbConnection connection = DatabaseConnector.CommonFunctions.connectToDB();
+
+            string commandCourse = "SELECT Course from allCourses where Course = '" + myFillDatabase.course[2] + "';";
+
+            //returns list of courses that matches - should be either course name or nothing?
+            List<string> coursesAlreadyInTable = DatabaseConnector.CommonFunctions.readData(connection, commandCourse);
+            bool inTable = coursesAlreadyInTable.Any();
+            //   Assert.IsTrue(inTable);
+
+        }
+
+        //test checking professor credentials 
+        [Test]
+        public static void checkProfCredentialsTest()
+        {
+
+            string usernameProf = "ribler_r" + "@lynchburg.edu";
+            string passwordProf = "randy";
+            //Post to DataBase
+            //call database connection function
+            OleDbConnection connection = DatabaseConnector.CommonFunctions.connectToDB();
+
+            //Create the command for the database connection
+            OleDbCommand cmd = DatabaseConnector.CommonFunctions.buildDatabaseConnectionCommand(connection);
+
+            //make the query string to see if there is a match with the info from the login form
+            string checkProfCredentialsQueryText = "select count(*) from professors where Username = '" + usernameProf + "' and Password = '" + passwordProf + "';";
+
+            //run the query and get back the number of rows that match the query
+            int noRowMatchingProf = DatabaseConnector.CommonFunctions.noRowsContainingInfo(connection, checkProfCredentialsQueryText);
+
+            //check if the number of rows is >0
+            Assert.GreaterOrEqual(noRowMatchingProf, 1);
+        }
+
+        //test professor entering a single student
+        [Test]
+        public static void addSingleStudentTest()
+        {
+            // Declare and set array element values 
+
+            string[] classIDIn = new string[3];
+            string[] studentIDIn = new string[3];
+            string[] lastNameIn = new string[3];
+            string[] firstNameIn = new string[3];
+            string[] emailIn = new string[3];
+
+            //to match the first data field when the data is read from excel, set
+            //element 2 - just add as a string
+            classIDIn[2] = "250";
+            studentIDIn[2] = "54545";
+            lastNameIn[2] = "Micheals";
+            firstNameIn[2] = "Mary";
+            emailIn[2] = "michaels_m@lynchburg.edu";
+
+            //make an instance of myFillDatabase
+            FillDatabase myFillDatabase = new FillDatabase();
+            //since we are not using an excel file we have to set the fields
+            myFillDatabase.setUserInfo(classIDIn, studentIDIn, lastNameIn, firstNameIn, emailIn);
+            //send the info to the database
+            myFillDatabase.rosterToDatabaseTables();
+
+
+            //check it
+            //call database connection function
+            OleDbConnection connection = DatabaseConnector.CommonFunctions.connectToDB();
+
+            //Create the command for the database connection
+            OleDbCommand cmd = DatabaseConnector.CommonFunctions.buildDatabaseConnectionCommand(connection);
+
+            //make the query string to see if there is a match with the info from the login form
+            string checkStudentEnteredQueryText = "select count(*) from classesTaking where Username = '" + emailIn[2] + "' and Course = '" + classIDIn[2] + "';";
+
+            //run the query and get back the number of rows that match the query
+            int noRowEnteredStudent = DatabaseConnector.CommonFunctions.noRowsContainingInfo(connection, checkStudentEnteredQueryText);
+
+            //check if the number of rows is >0
+            Assert.GreaterOrEqual(noRowEnteredStudent, 1);
+        }
+
+        //test professor deleting a student from a class
+        [Test]
+        public static void deleteStudentFromAClassTest()
+        {
+            //First we need to add the student so that it is there ot be deleted
+            //since we cannot rely anything else
+            // Declare and set array element values 
+
+            string[] classIDIn = new string[3];
+            string[] studentIDIn = new string[3];
+            string[] lastNameIn = new string[3];
+            string[] firstNameIn = new string[3];
+            string[] emailIn = new string[3];
+
+            //to match the first data field when the data is read from excel, set
+            //element 2 - just add as a string
+            classIDIn[2] = "235";
+            studentIDIn[2] = "54321";
+            lastNameIn[2] = "Smithe";
+            firstNameIn[2] = "Joseph";
+            emailIn[2] = "smithe_j@lynchburg.edu";
+
+            //make an instance of myFillDatabase
+            FillDatabase myFillDatabase = new FillDatabase();
+            //since we are not using an excel file we have to set the fields
+            myFillDatabase.setUserInfo(classIDIn, studentIDIn, lastNameIn, firstNameIn, emailIn);
+            //send the info to the database
+            myFillDatabase.rosterToDatabaseTables();
+
+            //now delete the student
+            myFillDatabase.deleteStudentFromACourse("smithe_j@lynchburg.edu", "235");
+
+            //check it
+            //call database connection function
+            OleDbConnection connection = DatabaseConnector.CommonFunctions.connectToDB();
+
+            //Create the command for the database connection
+            OleDbCommand cmd = DatabaseConnector.CommonFunctions.buildDatabaseConnectionCommand(connection);
+
+            //make the query string to see if there is a match with the info from the login form
+            string checkStudentDeletedQueryText = "select count(*) from classesTaking where Username = '" + emailIn[2] + "' and Course = '" + classIDIn[2] + "';";
+
+            //run the query and get back the number of rows that match the query
+            int noRowEnteredStudent = DatabaseConnector.CommonFunctions.noRowsContainingInfo(connection, checkStudentDeletedQueryText);
+
+            //check if the number of rows is 0
+            Assert.AreEqual(noRowEnteredStudent, 0);
+
+        }
+
+        //test professor deleting a student from all classes
+        [Test]
+        public static void deleteStudentFromAllClassesTest()
+        {
+            //First we need to add the student so that it is there ot be deleted
+            //since we cannot rely anything else
+            // Declare and set array element values 
+
+            string[] classIDIn = new string[3];
+            string[] studentIDIn = new string[3];
+            string[] lastNameIn = new string[3];
+            string[] firstNameIn = new string[3];
+            string[] emailIn = new string[3];
+
+            //to match the first data field when the data is read from excel, set
+            //element 2 - just add as a string
+            classIDIn[2] = "385";
+            studentIDIn[2] = "111111";
+            lastNameIn[2] = "Johnson";
+            firstNameIn[2] = "Demarcus";
+            emailIn[2] = "johnson_d@lynchburg.edu";
+
+            //make an instance of myFillDatabase
+            FillDatabase myFillDatabase = new FillDatabase();
+            //since we are not using an excel file we have to set the fields
+            myFillDatabase.setUserInfo(classIDIn, studentIDIn, lastNameIn, firstNameIn, emailIn);
+            //send the info to the database
+            myFillDatabase.rosterToDatabaseTables();
+
+            //now delete the student
+            myFillDatabase.deleteStudentFromAllCourses("johnson_d@lynchburg.edu");
+
+            //check it
+            //call database connection function
+            OleDbConnection connection = DatabaseConnector.CommonFunctions.connectToDB();
+
+            //Create the command for the database connection
+            OleDbCommand cmd = DatabaseConnector.CommonFunctions.buildDatabaseConnectionCommand(connection);
+
+            //make the query string to see if there is a match with the info from the login form
+            string checkStudentDeletedQueryText = "select count(*) from classesTaking where Username = '" + emailIn[2] + "' and Course = '" + classIDIn[2] + "';";
+
+            //run the query and get back the number of rows that match the query
+            int noRowEnteredStudent = DatabaseConnector.CommonFunctions.noRowsContainingInfo(connection, checkStudentDeletedQueryText);
+
+            //check if the number of rows is 0
+            Assert.AreEqual(noRowEnteredStudent, 0);
+
+        }
     }
 }
+
